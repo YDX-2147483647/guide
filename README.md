@@ -16,7 +16,7 @@
 
 简单修改请阅读[参与指南 | Typst 中文社区导航](https://typst-doc-cn.github.io/guide/dev/)，以下仅用于本地预览。
 
-1. 安装 [Typst CLI](https://typst.app/open-source/#download)（v0.14）。
+1. 安装 [Typst CLI](https://typst.app/open-source/#download)（v0.15）。
 2. 安装 [pnpm](https://pnpm.io)，然后运行`pnpm install`。
 3. 运行`pnpm dev --open`并等待浏览器打开网页。
 

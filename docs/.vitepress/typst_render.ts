@@ -100,7 +100,7 @@ function compileTypst(
 
   // 计算源码的 SHA1 哈希值
   const hash = createHash('sha1')
-    .update(`cache-version: 2025-11-05\0${typst_executable}\0${src}`)
+    .update(`cache-version: 2026-06-16\0${typst_executable}\0${src}`)
     .digest('hex')
     .slice(0, 10);
   const outPrefix = 'docs/generated/';
