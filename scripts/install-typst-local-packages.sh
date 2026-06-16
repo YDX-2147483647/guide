@@ -10,6 +10,7 @@ pushd "$WORKDIR"
 curl -o citext.zip -L https://github.com/Shuenhoy/citext/archive/refs/tags/v0.5.0.zip
 7z x citext.zip citext-0.5.0/package
 mkdir -p "$TYPST_LOCAL/citext"
+rm -rf "$TYPST_LOCAL/citext/0.5.0" # Remove the old cache if it exists (Netlify sometimes keeps the cache)
 mv citext-0.5.0/package "$TYPST_LOCAL/citext/0.5.0"
 
 # Test citext
