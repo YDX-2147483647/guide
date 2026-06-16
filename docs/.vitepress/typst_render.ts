@@ -170,7 +170,14 @@ function compileTypst(
     )
     ?.replaceAll(
       // 删除下载包的记录
-      /(^|\n)downloading @preview\/.+\n.+ ETA: 0 s($|\n)/g,
+      /(^|\n)downloading @preview\/(.|\n)+?\n(.+ ETA: 0 s(\n|$))+/gm,
+      '',
+    )
+    ?.replaceAll(
+      // 继续删除下载包的残余记录
+      // https://github.com/typst/typst/blob/c98e910391a8544b28bd5c99a6f3b1ac1ada9a84/crates/typst-kit/src/downloader.rs#L332-L340
+      // {downloaded} / {total} ({percent:3.0} %), {bytes}/s, ETA: {eta}
+      /(^|\n)\s*\d+\.\d+ ([KMG]i|)B \/ \s*\d+\.\d+ ([KMG]i|)B \(\s*\d+ %\), \s*\d+\.\d+ ([KMG]i|)B\/s, ETA: \d+ s(\n|$)/gm,
       '',
     )
     ?.trim();
