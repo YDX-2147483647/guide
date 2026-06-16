@@ -7,7 +7,7 @@ tags: [package, cetz]
 由于官方文档在 Installing 部分的介绍中所用的示例代码为：
 
 ```typst no-render
-#import "@local/cetz:0.3.2"
+#import "@local/cetz:0.5.2"
 
 #cetz.canvas({
   import cetz.draw: *
@@ -22,6 +22,6 @@ tags: [package, cetz]
   - `@preview`：Typst 仅开放 beta 版本的包管理机制。所有 beta 版本的都在 `@preview` 命名空间下。
   - `@local`：Typst 建议的本地库命名空间。
 
-但由于所有在 Typst Universe 上的包都用 `@preview` 命名空间，没有例外。因此在上面的安装操作中，需要将导入代码修改为 `#import "@preview/cetz:0.3.2"`，此时可以自动实现安装 `cetz` 与导入。
+但由于所有在 Typst Universe 上的包都用 `@preview` 命名空间，没有例外。因此在上面的安装操作中，需要将导入代码修改为 `#import "@preview/cetz:0.5.2"`，此时可以自动实现安装 `cetz` 与导入。
 
 事实上，文档的 Installing 部分针对本地手动安装，一般使用应参考 Usage 部分。
