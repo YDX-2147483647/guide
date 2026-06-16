@@ -5,6 +5,20 @@ outline: [2, 3]
 
 # 怎么把 cal 字体变成 LaTeX 里 mathcal 默认的那种？
 
+::: tip ✅ Typst 0.15 已变化
+[#8164](https://github.com/typst/typst/pull/8164) 将 New Computer Modern 字体的版本更新到了 8.0.0。新版字体修改了 cal 的设计，现在与 LaTeX `\mathcal`默认设计一致了。
+
+```typst
+-- #set page(height: auto, width: auto, margin: 1em)
+当前默认 $cal(K M Z), cal(P)_n, cal(T)^p$
+
+#show math.equation: set text(stylistic-set: 6)
+旧版设计 $cal(K M Z), cal(P)_n, cal(T)^p$
+```
+
+如需恢复旧版设计，可设置`stylistic-set: 6`，详见 [0.15.0 更新说明](https://typst.app/docs/changelog/0.15.0/#calligraphic-letterforms)。
+:::
+
 Typst 中数学字体默认是 New Computer Modern Math，与 LaTeX 中默认[^unicode-math]的 Computer Modern Math 略有不同。
 
 [^unicode-math]: 此处指不使用 unicode-math 时的默认数学字体；若使用 unicode-math，默认字体是 New Computer Modern Math，Typst 效果与之相同。
@@ -18,7 +32,7 @@ Typst 中数学字体默认是 New Computer Modern Math，与 LaTeX 中默认[^u
 1. [下载`CMSY10-fix_cmap_kerning.otf`](https://github.com/typst-doc-cn/guide/releases/download/files/CMSY10-fix_cmap_kerning.otf)并安装
 2. 如下设置`covers`
 
-```typst {4}
+```typst v0.14.2 {4}
 -- #set page(height: auto, width: auto, margin: 1em)
 -- #set text(fallback: false) // 为测试效果明显而关闭，实用时不建议关闭
 修改前 $cal(K M Z), cal(P)_n, cal(T)^p$
@@ -41,11 +55,11 @@ Typst 中数学字体默认是 New Computer Modern Math，与 LaTeX 中默认[^u
 
 [^unicode-math-cal]: 其实还标准化了[用于区分的变体序列][L2/20-275R]。不过目前 typst、正则表达式、字体的支持都很有限，它对我们设置字体没有什么帮助。
 
-[L2/20-275R]: https://www.unicode.org/L2/L2020/20275r-math-calligraphic.pdf "Proposed variation sequences for math calligraphic letters (L2/20-275R) | Unicode"
+[L2/20-275R]: https://www.unicode.org/L2/L2020/20275r-math-calligraphic.pdf 'Proposed variation sequences for math calligraphic letters (L2/20-275R) | Unicode'
 
 如需同时使用二者，请自定义函数设置字体。
 
-```typst
+```typst v0.14.2
 -- #set page(height: auto, width: auto, margin: 1em)
 -- #set text(fallback: false) // 为测试效果明显而关闭，实用时不建议关闭
 默认字体效果 $cal(L)^p != scr(L)^p, cal(a)_n = scr(a)_n$
@@ -63,7 +77,7 @@ Typst 中数学字体默认是 New Computer Modern Math，与 LaTeX 中默认[^u
 自定义`scr`后 $cal(L)^p != scr(L)^p, cal(a)_n = scr(a)_n$
 ```
 
-```typst {1-4}
+```typst v0.14.2 {1-4}
 -- #set page(height: auto, width: auto, margin: 1em)
 -- #set text(fallback: false) // 为测试效果明显而关闭，实用时不建议关闭
 #let cal(it) = text(
@@ -72,6 +86,7 @@ Typst 中数学字体默认是 New Computer Modern Math，与 LaTeX 中默认[^u
 )
 只自定义`cal`也可行 $cal(L)^p != scr(L)^p, cal(a)_n = scr(a)_n$
 ```
+
 :::
 
 ## 法二：使用原版字体
@@ -79,7 +94,7 @@ Typst 中数学字体默认是 New Computer Modern Math，与 LaTeX 中默认[^u
 1. 从 matplotlib 的`mpl-data/fonts/ttf/`文件夹[下载`cmsy10.ttf`](https://github.com/matplotlib/matplotlib/blob/be68dfecf9d26ac1a8e1e30a0de6171ecf174cd5/lib/matplotlib/mpl-data/fonts/ttf/cmsy10.ttf)并安装
 2. 如下设置`font: "cmsy10"`并用`upright`切换到普通码位
 
-```typst
+```typst v0.14.2
 -- #set page(height: auto, width: auto, margin: 1em)
 #let cal(s) = text(font: "cmsy10", math.upright(s))
 $ cal(K M Z) != std.math.cal(K M Z) $
@@ -99,7 +114,7 @@ Computer Modern Math 早于 OpenType 技术标准，通常以 Type 1 字体形�
 
 `cmsy10.ttf`缺少 MathKernInfo 等信息，导致上下标位置异常。其中，竖直位置有玄学办法勉强修补（加上`context`），而水平位置则无已知办法能完全解决。
 
-```typst
+```typst v0.14.2
 -- #set page(height: auto, width: auto, margin: 1em)
 #set align(end)
 

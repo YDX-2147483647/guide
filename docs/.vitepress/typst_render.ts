@@ -16,7 +16,7 @@ const which = (cmd: string): Promise<string | null> =>
     .catch((_) => null);
 
 const AVAILABLE_EXECUTABLES = await Promise.all(
-  ['typst', 'typst-0.13.1'].map(which),
+  ['typst', 'typst-0.14.2', 'typst-0.13.1'].map(which),
 ).then((executables) => executables.filter((cmd) => cmd !== null));
 assert(
   AVAILABLE_EXECUTABLES.includes('typst'),
@@ -267,7 +267,7 @@ function TypstRender(md: MarkdownIt) {
     const [lang, ...tags] = token.info.trim().split(' ');
     // Language tags:
     // - `typst` (recommended): Compile with the latest typst
-    // - `typst v0.13.1`: Compile with typst v0.13.1
+    // - `typst v0.13.1` or `typst v0.14.2`: Compile with typst v0.13.1 or v0.14.2
     // - `typst no-render`: Skip compilation
     // - `typst expect-warning`: Compile with the latest typst, and expect warnings. These warnings will still be shown on the website, but will not fail the CI or be reported to the terminal.
     // Other variants are discouraged.

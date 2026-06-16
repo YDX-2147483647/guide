@@ -15,6 +15,12 @@ tar -xvf typst-x86_64-unknown-linux-musl.tar.xz
 mv typst-x86_64-unknown-linux-musl/typst typst
 rm -r typst-x86_64-unknown-linux-musl
 
+# Install typst v0.14
+curl -OL https://github.com/typst/typst/releases/download/v0.14.2/typst-x86_64-unknown-linux-musl.tar.xz
+tar -xvf typst-x86_64-unknown-linux-musl.tar.xz
+mv typst-x86_64-unknown-linux-musl/typst typst-0.14.2
+rm -r typst-x86_64-unknown-linux-musl
+
 # Install typst v0.13
 curl -OL https://github.com/typst/typst/releases/download/v0.13.1/typst-x86_64-unknown-linux-musl.tar.xz
 tar -xvf typst-x86_64-unknown-linux-musl.tar.xz
