@@ -5,7 +5,26 @@ links:
   - https://github.com/typst/typst/issues/1204
 ---
 
-# 列表符号/编号和内容错位怎么办？
+# 【已修复】列表符号/编号和内容错位怎么办？
+
+::: tip ✅ Typst 0.15 已修复
+[#7895](https://github.com/typst/typst/pull/7895) 已让`list`、`enum`第一行对齐基线，现在应该基本没有错位问题了。
+
+```typst
+#set text(font: ((name: "New Computer Modern", covers: "latin-in-cjk"), "SimSun"))
+
+= `enum`
++ 鲁镇的酒店的格局
++ abc $display(integral)_a^b$
++ def #box(stroke: 1pt, inset: 3mm, baseline: 3mm)[test]
+
+= `list`
+- 鲁镇的酒店的格局
+- abc $display(integral)_a^b$
+- def #box(stroke: 1pt, inset: 3mm, baseline: 3mm)[test]
+```
+
+:::
 
 ## 现象
 
@@ -13,7 +32,7 @@ links:
 
 若分别设置了中西字体，那么即使只写汉字，`enum` 或 `list` 的符号/编号和内容也可能错位，例如下图：
 
-```typst
+```typst v0.14.2
 -- #set page(height: auto)
 #set text(font: ((name: "New Computer Modern", covers: "latin-in-cjk"), "SimSun"))
 
@@ -26,7 +45,7 @@ links:
 
 并且直接写编号完全正常：
 
-```typst
+```typst v0.14.2
 -- #set page(height: auto)
 -- #set text(font: ((name: "New Computer Modern", covers: "latin-in-cjk"), "SimSun"))
 #[1.] 鲁镇的酒店的格局
@@ -43,7 +62,7 @@ links:
 
 如果行内有额外高度的 `box` 或者行内公式，会撑高内容块的高度，导致符号/编号与内容错位，例如下图：
 
-```typst
+```typst v0.14.2
 -- #set page(height: auto)
 = `enum`
 + abc $display(integral)_a^b$
@@ -60,7 +79,7 @@ links:
 
 `itemize` 包可以解决大多数符号/编号与内容错位的问题
 
-```typst
+```typst v0.14.2
 -- #set page(height: auto)
 #import "@preview/itemize:0.2.0" as el  // [!code ++]
 #show: el.default-enum-list // [!code ++]
@@ -74,7 +93,7 @@ links:
 - 鲁镇的酒店的格局
 ```
 
-```typst
+```typst v0.14.2
 -- #set page(height: auto)
 #import "@preview/itemize:0.2.0" as el  // [!code ++]
 #show: el.default-enum-list // [!code ++]
