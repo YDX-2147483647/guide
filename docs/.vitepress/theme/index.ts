@@ -1,9 +1,14 @@
 import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
+
+import { NolebaseGitChangelogPlugin } from '@nolebase/vitepress-plugin-git-changelog/client';
+import '@nolebase/vitepress-plugin-git-changelog/client/style.css';
+
+import 'virtual:uno.css';
+
 import Layout from './Layout.vue';
 import FAQList from './FAQList.vue';
 import './custom.css';
-import 'virtual:uno.css';
 
 export default {
   extends: DefaultTheme,
@@ -13,5 +18,6 @@ export default {
   enhanceApp({ app }) {
     // register your custom global components
     app.component('FAQList', FAQList);
+    app.use(NolebaseGitChangelogPlugin);
   },
 } satisfies Theme;

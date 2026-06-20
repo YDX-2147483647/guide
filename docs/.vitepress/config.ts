@@ -5,6 +5,10 @@ import {
 import footnote from 'markdown-it-footnote';
 import UnoCSS from 'unocss/vite';
 import { defineConfig } from 'vitepress';
+import {
+  GitChangelog,
+  GitChangelogMarkdownSection,
+} from '@nolebase/vitepress-plugin-git-changelog/vite';
 
 import { PROFILE } from './config_profile';
 import { MarkdownTransform } from './plugins/markdown_transform';
@@ -199,6 +203,13 @@ if (
   },
 
   vite: {
-    plugins: [UnoCSS(), MarkdownTransform()],
+    plugins: [
+      UnoCSS(),
+      MarkdownTransform(),
+      GitChangelog({
+        repoURL: () => 'https://github.com/typst-doc-cn/guide',
+      }),
+      GitChangelogMarkdownSection(),
+    ],
   },
 });
