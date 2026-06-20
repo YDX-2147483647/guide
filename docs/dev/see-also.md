@@ -35,3 +35,7 @@ links:
 缓存存储在项目中的`/target/cache/`。
 
 允许整体删除缓存文件夹，也允许删除单个文件。
+
+### 计入目录
+
+VitePress 会把[带有`id`的`<h2>`](https://github.com/vuejs/vitepress/blob/ee028266a8fee777a8ee247b1c4490432c0a830e/src/client/theme-default/composables/outline.ts#L24-L29)计入页面右侧的目录。因此，标注`id="see-also"`即可。
