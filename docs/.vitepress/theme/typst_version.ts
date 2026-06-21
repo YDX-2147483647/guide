@@ -57,3 +57,16 @@ export function getTypstVersion(date: Date): TypstVersion {
     latest: found.tagName == typst_history[0].tagName,
   };
 }
+
+/** Typst tags exported for @nolebase/vitepress-plugin-git-changelog */
+export const TYPST_TAGS_FOR_NOLEBASE = typst_history.map(
+  ({ publishedAt, tagName }) => {
+    const tag = `Typst ${tagName}`;
+    const changelog = `https://typst.app/docs/changelog/${tagName.replace(/^v/, '')}/`;
+    return {
+      date_timestamp: publishedAt.getTime(),
+      tag,
+      release_tag_url: changelog,
+    };
+  },
+);

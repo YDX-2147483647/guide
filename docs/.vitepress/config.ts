@@ -5,9 +5,14 @@ import {
 import footnote from 'markdown-it-footnote';
 import UnoCSS from 'unocss/vite';
 import { defineConfig } from 'vitepress';
+import {
+  GitChangelog,
+  GitChangelogMarkdownSection,
+} from '@nolebase/vitepress-plugin-git-changelog/vite';
 
 import { PROFILE } from './config_profile';
 import { MarkdownTransform } from './plugins/markdown_transform';
+import { TypstTagsForNolebase } from './plugins/typst_version_nolebase';
 import mirror_link from './plugins/mirror_link';
 import TypstRender from './typst_render';
 
@@ -199,6 +204,14 @@ if (
   },
 
   vite: {
-    plugins: [UnoCSS(), MarkdownTransform()],
+    plugins: [
+      UnoCSS(),
+      MarkdownTransform(),
+      TypstTagsForNolebase(),
+      GitChangelog({
+        repoURL: () => 'https://github.com/typst-doc-cn/guide',
+      }),
+      GitChangelogMarkdownSection(),
+    ],
   },
 });
