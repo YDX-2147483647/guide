@@ -1,0 +1,47 @@
+diff --git a/dist/client/composables/changelog.mjs b/dist/client/composables/changelog.mjs
+index f63b201c453809ad5a5797360ce3f55a70ee6581..cadb0547b88485f5a71bafbc79e1da480a5d9da5 100644
+--- a/dist/client/composables/changelog.mjs
++++ b/dist/client/composables/changelog.mjs
+@@ -2,6 +2,20 @@ import changelog from "virtual:nolebase-git-changelog";
+ import { useData } from "vitepress";
+ import { computed, ref, toValue } from "vue";
+ import { isStringArray } from "../utils.mjs";
++
++import TYPST_TAGS_FOR_NOLEBASE from "virtual:zhtyp-guide-typst-version"
++
++const TYPST_FAKE_COMMITS = TYPST_TAGS_FOR_NOLEBASE.map((
++  { date_timestamp, tag, release_tag_url },
++) => ({
++  date_timestamp,
++  authors: [],
++  tag,
++  tags: [tag],
++  release_tag_url,
++  release_tags_url: [release_tag_url],
++}));
++
+ export function useChangelog() {
+   const { page } = useData();
+   const gitChangelog = ref(changelog);
+@@ -10,10 +24,17 @@ export function useChangelog() {
+   const _commits = computed(() => {
+     const currentPath = toValue(page.value.filePath);
+     const allCommits = gitChangelog.value.commits;
+-    const commits2 = allCommits.filter((c) => c.paths.includes(currentPath)) || [];
+-    return commits2.sort((a, b) => b.date_timestamp - a.date_timestamp).filter((commit, index) => {
+-      if (commit.tag && (!commits2[index + 1] || commits2[index + 1]?.tag))
+-        return false;
++    const commits2 = TYPST_FAKE_COMMITS.concat(allCommits.filter((c) => c.paths.includes(currentPath)) || []);
++    return commits2.sort((a, b) => b.date_timestamp - a.date_timestamp).filter((commit, index, arr) => {
++      // Drop irrelevant tags
++      if (commit.tag) {
++        // `prev` & `next` are in the sense of time, not the position in the array
++        const next = arr[index - 1];
++        const prev = arr[index + 1];
++        // Keep a tag if and only if it's adjacent to a regular commit.
++        return (next && !next.tag) || (prev && !prev.tag);
++      }
++      // Keep all regular commits
+       return true;
+     });
+   });

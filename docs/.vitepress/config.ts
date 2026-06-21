@@ -12,6 +12,7 @@ import {
 
 import { PROFILE } from './config_profile';
 import { MarkdownTransform } from './plugins/markdown_transform';
+import { TypstTagsForNolebase } from './plugins/typst_version_nolebase';
 import mirror_link from './plugins/mirror_link';
 import TypstRender from './typst_render';
 
@@ -206,6 +207,7 @@ if (
     plugins: [
       UnoCSS(),
       MarkdownTransform(),
+      TypstTagsForNolebase(),
       GitChangelog({
         repoURL: () => 'https://github.com/typst-doc-cn/guide',
       }),
