@@ -9,10 +9,16 @@ mv 7zz 7z
 # Install jq
 curl -o jq -L https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-linux-amd64
 
+# Install typst latest
+curl -OL https://github.com/typst/typst/releases/download/v0.15.0/typst-x86_64-unknown-linux-musl.tar.xz
+tar -xvf typst-x86_64-unknown-linux-musl.tar.xz
+mv typst-x86_64-unknown-linux-musl/typst typst
+rm -r typst-x86_64-unknown-linux-musl
+
 # Install typst v0.14
 curl -OL https://github.com/typst/typst/releases/download/v0.14.2/typst-x86_64-unknown-linux-musl.tar.xz
 tar -xvf typst-x86_64-unknown-linux-musl.tar.xz
-mv typst-x86_64-unknown-linux-musl/typst typst
+mv typst-x86_64-unknown-linux-musl/typst typst-0.14.2
 rm -r typst-x86_64-unknown-linux-musl
 
 # Install typst v0.13

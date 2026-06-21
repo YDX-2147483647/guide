@@ -1,5 +1,6 @@
 ---
 tags: [svg, mermaid, tool]
+outline: [2, 3]
 ---
 
 # 为什么 mermaid/draw.io 生成的 SVG 图片导入后没有文字？
@@ -31,7 +32,19 @@ mv final1.svg final.svg
 
 ## 另法：直接在 Typst 内画图
 
-另外也可考虑用 [oxdraw](https://typst.app/universe/package/oxdraw) 包直接绘图。
+另外也可考虑用[各种 Typst 包](https://typst.app/universe/search/?q=mermaid)直接绘图。这些包通常采用 rust 复刻版 mermaid.js，往往与原版不完全兼容。
+
+::: details oxdraw
+
+[oxdraw – Typst Universe](https://typst.app/universe/package/oxdraw)
+[![typst repo stars](https://img.shields.io/github/stars/hongjr03/typst-oxdraw?style=flat-square&label=typst%20repo%20stars){class="badge"}](https://github.com/hongjr03/typst-oxdraw)
+[![upstream repo stars](https://img.shields.io/github/stars/RohanAdwankar/oxdraw?style=flat-square&label=upstream%20repo%20stars){class="badge"}](https://github.com/RohanAdwankar/oxdraw)
+
+不过 oxdraw 使用 [rust 复刻版 oxdraw](https://github.com/RohanAdwankar/oxdraw) 渲染，语法与原版 mermaid 不完全兼容。例如，`-->`前不允许换行，不然会报以下错误。
+
+> plugin errored with: Failed to parse diagram: encountered empty node reference
+
+oxdraw 由国人打包，所以中文支持相对好一些。
 
 ````typst
 -- #set page(height: auto, width: auto, margin: 1em)
@@ -59,6 +72,84 @@ graph LR
 ```)
 ````
 
-不过 oxdraw 使用 [rust 复刻版](https://github.com/RohanAdwankar/oxdraw)渲染，语法与原版 mermaid 不完全兼容。例如，`-->`前不允许换行，不然会报以下错误。
+:::
 
-> plugin errored with: Failed to parse diagram: encountered empty node reference
+::: details mmdr (mermaid-rs-renderer)
+
+[mmdr – Typst Universe](https://typst.app/universe/package/mmdr)
+[![typst repo stars](https://img.shields.io/github/stars/HSGamer/typst-mmdr?style=flat-square&label=typst%20repo%20stars){class="badge"}](https://github.com/HSGamer/typst-mmdr)
+[![upstream repo stars](https://img.shields.io/github/stars/1jehuang/mermaid-rs-renderer?style=flat-square&label=upstream%20repo%20stars){class="badge"}](https://github.com/1jehuang/mermaid-rs-renderer)
+
+不过 mmdr 使用 [rust 复刻版 mermaid-rs-renderer](https://github.com/1jehuang/mermaid-rs-renderer)渲染，语法与原版 mermaid 不完全兼容。例如，`-->`前不允许换行，否则会理解为`- →`。
+
+此外，在 https://typst.app 上，`土`等汉字无法显示。
+
+````typst
+-- #set page(height: auto, width: auto, margin: 1em)
+#import "@preview/mmdr:0.2.2": mermaid
+
+#mermaid(
+  ```mermaid
+  flowchart LR
+    subgraph 五行
+      金[金 🔑]
+      木[木 🌳]
+      土[土 ⛰️]
+      水[水 🌊]
+      火[火 🔥]
+    end
+    subgraph 四元素
+      earth[土 ⛰️]
+      water[水 🌊]
+      air[气 💨]
+      fire[火 🔥]
+    end
+
+    火 --> fire
+    土 --> earth
+    水 --> water
+  ```.text,
+  base-theme: "default"
+)
+````
+
+:::
+
+::: details merman
+
+[merman – Typst Universe](https://typst.app/universe/package/merman)
+[![repo stars](https://img.shields.io/github/stars/Latias94/merman?style=flat-square&label=repo%20stars){class="badge"}](https://github.com/Latias94/merman)
+
+不过 merman 使用 [rust 复刻版 merman](https://github.com/Latias94/merman)渲染，语法与原版 mermaid 不完全兼容。例如 node 名称不能包含汉字，不然会报以下错误。
+
+> panicked with: Diagram parse error (flowchart-v2): `User { error: LexError { message: "Unexpected character at ○○" } }`
+
+````typst
+-- #set page(height: auto, width: auto, margin: 1em)
+#import "@preview/merman:0.1.0": mermaid
+
+#mermaid(
+  ```mermaid
+  flowchart LR
+    subgraph 五行
+      Metal[金 🔑]
+      Wood[木 🌳]
+      Earth[土 ⛰️]
+      Water[水 🌊]
+      Fire[火 🔥]
+    end
+    subgraph 四元素
+      earth[土 ⛰️]
+      water[水 🌊]
+      air[气 💨]
+      fire[火 🔥]
+    end
+
+    Fire --> fire
+    Earth --> earth
+    Water --> water
+  ```.text,
+)
+````
+
+:::

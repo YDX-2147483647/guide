@@ -193,7 +193,7 @@ citext 使用 [citation.js](https://citation.js.org/) + [QuickJS](https://crates
 
 ```typst no-render
 // 在文档开头引入
-#import "@preview/gb7714-bilingual:0.2.2": init-gb7714, gb7714-bibliography
+#import "@preview/gb7714-bilingual:0.2.3": init-gb7714, gb7714-bibliography
 #show: init-gb7714.with(read("refs.bib"), style: "numeric", version: "2015")
 
 // 将原本的 #bibliography("refs.bib") 替换为
@@ -220,7 +220,7 @@ citext 使用 [citation.js](https://citation.js.org/) + [QuickJS](https://crates
 
 ````typst
 -- #set page(height: auto, width: 24em, margin: 1em)
-#import "@preview/gb7714-bilingual:0.2.2": gb7714-bibliography, init-gb7714
+#import "@preview/gb7714-bilingual:0.2.3": gb7714-bibliography, init-gb7714
 
 #let bib = ```bib
 @article{吴伟仁2017,

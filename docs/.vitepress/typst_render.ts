@@ -16,7 +16,7 @@ const which = (cmd: string): Promise<string | null> =>
     .catch((_) => null);
 
 const AVAILABLE_EXECUTABLES = await Promise.all(
-  ['typst', 'typst-0.13.1'].map(which),
+  ['typst', 'typst-0.14.2', 'typst-0.13.1'].map(which),
 ).then((executables) => executables.filter((cmd) => cmd !== null));
 assert(
   AVAILABLE_EXECUTABLES.includes('typst'),
@@ -100,7 +100,7 @@ function compileTypst(
 
   // 计算源码的 SHA1 哈希值
   const hash = createHash('sha1')
-    .update(`cache-version: 2025-11-05\0${typst_executable}\0${src}`)
+    .update(`cache-version: 2026-06-16\0${typst_executable}\0${src}`)
     .digest('hex')
     .slice(0, 10);
   const outPrefix = 'docs/generated/';
@@ -170,7 +170,14 @@ function compileTypst(
     )
     ?.replaceAll(
       // 删除下载包的记录
-      /(^|\n)downloading @preview\/.+\n.+ ETA: 0 s($|\n)/g,
+      /(^|\n)downloading @preview\/(.|\n)+?\n(.+ ETA: 0 s(\n|$))+/gm,
+      '',
+    )
+    ?.replaceAll(
+      // 继续删除下载包的残余记录
+      // https://github.com/typst/typst/blob/c98e910391a8544b28bd5c99a6f3b1ac1ada9a84/crates/typst-kit/src/downloader.rs#L332-L340
+      // {downloaded} / {total} ({percent:3.0} %), {bytes}/s, ETA: {eta}
+      /(^|\n)\s*\d+\.\d+ ([KMG]i|)B \/ \s*\d+\.\d+ ([KMG]i|)B \(\s*\d+ %\), \s*\d+\.\d+ ([KMG]i|)B\/s, ETA: \d+ s(\n|$)/gm,
       '',
     )
     ?.trim();
@@ -260,7 +267,7 @@ function TypstRender(md: MarkdownIt) {
     const [lang, ...tags] = token.info.trim().split(' ');
     // Language tags:
     // - `typst` (recommended): Compile with the latest typst
-    // - `typst v0.13.1`: Compile with typst v0.13.1
+    // - `typst v0.13.1` or `typst v0.14.2`: Compile with typst v0.13.1 or v0.14.2
     // - `typst no-render`: Skip compilation
     // - `typst expect-warning`: Compile with the latest typst, and expect warnings. These warnings will still be shown on the website, but will not fail the CI or be reported to the terminal.
     // Other variants are discouraged.

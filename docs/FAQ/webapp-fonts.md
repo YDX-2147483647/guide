@@ -21,10 +21,10 @@ tags: [font]
 ```shell
 curl -LO https://typst.app/assets/font-derived/font-index.mpk
 fq '[.elements.[] | { file: .elements[0].value, name: .elements[1].elements[0].value, style: .elements[1].elements[1].elements[0].value, weight: .elements[1].elements[1].elements[1].value, stretch: .elements[1].elements[1].elements[2].value }]' font-index.mpk --decode msgpack --value-output --compact-output > font-index.json
-jq .[].name font-index.json --raw-output | sort | uniq 
+jq .[].name font-index.json --raw-output | sort | uniq
 ```
 
-目前字体列表如下。（2025年9月30日）
+目前字体列表如下。（2026年6月21日）
 
 ```
 Allura
@@ -78,6 +78,7 @@ Infini Picto
 Inria Sans
 Inria Serif
 Inter
+JuliaMono
 Lato
 Lete Sans Math
 Liberation Mono
@@ -333,9 +334,13 @@ Noto Serif Vithkuqi
 Noto Serif Yezidi
 Noto Traditional Nushu
 NotoSerifTamilSlanted
+Old Standard
+OldStandard-Math
 Open Sauce One
 OpenDyslexic
 OpenDyslexicMono
+Pennstander
+Pennstander Math
 Permanent Marker
 PT Mono
 PT Sans

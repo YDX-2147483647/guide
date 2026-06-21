@@ -15,7 +15,7 @@ tags: [chinese, text, font]
 
 ```typst
 -- #set page(height: auto, margin: 1em)
-#import "@preview/cuti:0.2.1": show-cn-fakebold
+#import "@preview/cuti:0.4.0": show-cn-fakebold
 #show: show-cn-fakebold
 #set text(font: ("Times New Roman", "SimSun"))
 
