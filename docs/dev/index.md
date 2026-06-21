@@ -104,7 +104,7 @@ $ sum_(k=1)^n k = (n(n+1)) / 2 $
 ```md
 # 【已修复】……？
 
-::: tip ✅ Typst 0.0 已修复/已改进
+::: tip ✅ Typst 0.0 已修复/已改进/已变化
 [#000](https://github.com/typst/typst/pull/000) 已经……
 :::
 ```

@@ -9,30 +9,34 @@
     "fmt": "prettier . --write"
   },
   "devDependencies": {
-    "@shikijs/transformers": "^3.21.0",
-    "@std/fmt": "jsr:^1.0.8",
+    "@nolebase/vitepress-plugin-git-changelog": "^2.18.2",
+    "@shikijs/transformers": "^4.2.0",
+    "@std/fmt": "jsr:^1.0.10",
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-footnote": "^3.0.4",
-    "@types/node": "^25.0.0",
+    "@types/node": "^25.9.4",
     "@types/which": "^3.0.4",
-    "@waline/client": "^3.5.1",
-    "es-toolkit": "^1.42.0",
-    "prettier": "^3.7.1",
-    "unocss": "^66.5.10",
-    "vite": "^7.3.1",
-    "vitepress": "2.0.0-alpha.15",
-    "vue": "^3.5.13",
-    "which": "^6.0.0"
+    "@waline/client": "^3.15.2",
+    "es-toolkit": "^1.47.1",
+    "prettier": "^3.8.4",
+    "unocss": "^66.7.2",
+    "vite": "^8.0.16",
+    "vitepress": "2.0.0-alpha.17",
+    "vue": "^3.5.38",
+    "which": "^6.0.1"
   },
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
         "@algolia/client-search"
       ]
+    },
+    "patchedDependencies": {
+      "@nolebase/vitepress-plugin-git-changelog": "patches/@nolebase__vitepress-plugin-git-changelog.patch"
     }
   },
   "dependencies": {
-    "markdown-it": "^14.1.0",
+    "markdown-it": "^14.2.0",
     "markdown-it-footnote": "^4.0.0"
   },
   "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"

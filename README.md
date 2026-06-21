@@ -16,7 +16,7 @@
 
 简单修改请阅读[参与指南 | Typst 中文社区导航](https://typst-doc-cn.github.io/guide/dev/)，以下仅用于本地预览。
 
-1. 安装 [Typst CLI](https://typst.app/open-source/#download)（v0.14）。
+1. 安装 [Typst CLI](https://typst.app/open-source/#download)（v0.15）。
 2. 安装 [pnpm](https://pnpm.io)，然后运行`pnpm install`。
 3. 运行`pnpm dev --open`并等待浏览器打开网页。
 
@@ -24,7 +24,7 @@
 
 - 如想完全复现例子，可参考[`download-fonts.sh`](./scripts/download-fonts.sh)。
 
-- 如想编译网站中的零星旧例子，可下载 [Typst v0.13.1](https://github.com/typst/typst/releases/tag/v0.13.1)，将可执行文件重命名为`typst-0.13.1`或`typst-0.13.1.exe`，放到`$PATH`上。
+- 如想编译网站中的零星旧例子，可下载 [Typst v0.13.1](https://github.com/typst/typst/releases/tag/v0.13.1)，将可执行文件重命名为`typst-0.13.1`或`typst-0.13.1.exe`，放到`$PATH`上；[Typst v0.14.2](https://github.com/typst/typst/releases/tag/v0.14.2) 同理。
 
 - 如想在“另请参见”`<SeeAlso>`一栏解析 GitHub 链接的标题，请设置`$GITHUB_TOKEN`（仅用于访问 GitHub GraphQL API，故无需任何特殊权限；）。
 

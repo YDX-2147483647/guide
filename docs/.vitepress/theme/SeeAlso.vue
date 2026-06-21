@@ -25,7 +25,7 @@ const links = computed<Link[] | null>(() => {
 </script>
 <template>
   <section v-if="links">
-    <h2>另请参见</h2>
+    <h2 id="see-also">另请参见</h2>
     <ul>
       <li v-for="{ url, title } in links">
         <a :href="url" target="_blank">{{ title }}</a>

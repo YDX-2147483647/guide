@@ -8,7 +8,7 @@ tags: tool
 
 ```typst
 -- #set page(width: auto, height: auto, margin: 1em)
-#import "@preview/typsium:0.0.3": ce
+#import "@preview/typsium:0.3.2": ce
 #ce("[Cu(H2O)4]^(2+) + 4NH3 --> [Cu(NH3)4]^(2+) + 4H2O")
 ```
 

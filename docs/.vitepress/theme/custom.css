@@ -62,6 +62,12 @@ button.copy::after {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
+main .vp-doc img.badge {
+  display: inline;
+  vertical-align: middle;
+  margin-inline: 0.5em;
+}
+
 main .vp-doc h1 {
   display: none;
 }
