@@ -18,8 +18,8 @@ const tags = computed(() => makeTags(data.frontmatter.value.tags));
 
 const typstVersion = computed(() => {
   const lastUpdated = data.page.value.lastUpdated;
-  // 新创建而未提交的页面，`lastUpdated`会为`null`
-  if (lastUpdated !== null) {
+  // 新创建而未提交的页面，`lastUpdated`会为`null`或`0`，详见 https://github.com/vuejs/vitepress/issues/5321
+  if (lastUpdated !== null && lastUpdated !== 0) {
     return getTypstVersion(new Date(lastUpdated!));
   }
   return null;
