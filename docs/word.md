@@ -32,12 +32,12 @@ package 就是「包」，在小蓝书中翻译为「库」，是一些由 [Typs
 
 ![为什么中文字体这么奇怪](./images/20240715132539.png)
 
-由于 Typst 并非由国人设计，它的默认字体并不适合中文排版。因此，我们需要对 Typst 的字体进行一些设置。在文章的开头，我们可以使用 `#set text(font: "Noto Sans CJK SC", lang: "zh", region: "cn")` 来设置文章正文的字体为「思源黑体」、语言为「中文」、地区为「中国」。这样，我们就可以保证中文的排版效果。如果你需要使用其他字体，可以参考[为什么中文字体这么奇怪](./FAQ/install-fonts.md)。
+由于 Typst 并非由国人设计，它的默认字体并不适合中文排版。因此，我们需要对 Typst 的字体进行一些设置。在文章的开头，我们可以使用 `#set text(font: "Noto Serif CJK SC", lang: "zh", region: "CN")` 来设置文章正文的字体为「思源宋体」、语言为「中文」、地区为「中国」。这样，我们就可以保证中文的排版效果。如果未安装该字体或想用其它字体，可以参考[如何设置（中文）字体](./FAQ/install-fonts.md)。
 
 要调整正文字体的大小，可以使用 `#set text(size: 12pt)` 来设置字体大小为 12 磅。
 
 ```typst no-render
-#set text(font: "Noto Sans CJK SC", lang: "zh", region: "cn", size: 12pt)
+#set text(font: "Noto Serif CJK SC", lang: "zh", region: "CN", size: 12pt)
 ```
 
 在这里，我们使用 `set` 命令设置文本 `text` 的参数，传入了 `font`、`lang`、`region` 和 `size` 四个参数的值。
