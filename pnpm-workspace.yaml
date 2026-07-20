@@ -1,0 +1,5 @@
+patchedDependencies:
+  '@nolebase/vitepress-plugin-git-changelog': patches/@nolebase__vitepress-plugin-git-changelog.patch
+
+allowBuilds:
+  esbuild: false
