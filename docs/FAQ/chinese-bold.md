@@ -3,11 +3,11 @@ tags: [chinese, text, font]
 ---
 # 中文没有加粗
 
-这是因为你使用的中文字体没有粗体字形。我们常用的宋体、黑体、楷体等都没有粗体字形。推荐使用支持粗体的字体，例如使用思源宋体和思源黑体。
+这是因为你使用的中文字体没有粗体字形。我们常用的宋体、黑体、楷体等都没有粗体字形。推荐使用支持粗体的字体，例如使用[思源宋体和思源黑体](https://help.mirrors.cernet.edu.cn/adobe-fonts/)。
 
 ```typst
 -- #set page(height: auto, margin: 1em)
-#set text(font: ("Source Han Serif SC"))
+#set text(font: "Source Han Serif SC")
 现在可以使用*粗体*了
 ```
 

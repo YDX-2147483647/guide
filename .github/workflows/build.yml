@@ -20,7 +20,7 @@ jobs:
           - vercel
           - cloudflare
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           # All history is required for https://vitepress.dev/reference/default-theme-last-updated
           fetch-depth: 0
@@ -41,7 +41,7 @@ jobs:
         if: steps.fonts-cache.outputs.cache-hit != 'true'
         run: bash scripts/download-fonts.sh
 
-      - uses: pnpm/action-setup@v5
+      - uses: pnpm/action-setup@v6
       - uses: actions/setup-node@v6
         with:
           cache: pnpm
@@ -54,7 +54,7 @@ jobs:
 
       - name: Upload pages artifact
         if: ${{ matrix.profile == 'default' }}
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: docs/.vitepress/dist
       - name: Upload artifact for ${{ matrix.profile }}
@@ -81,7 +81,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   deploy-vercel:
     name: Deploy to Vercel
